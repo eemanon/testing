@@ -27,8 +27,10 @@ comprendre le comportement attendu des constructeurs. Utilisez des assertions po
 - Le constructeur 3 ne vérifie pas si le point passé en argument est non null. Le test echoue donc.
 
 > Q.1e Définissez et utilisez l’opération @Before setUp() et tout ce qui est également nécessaire pour déléguer cette création à l’opération setUp.
+- OK. Pour les cas de test du genre de testmyPoint, on garde l'action de création de l'objet dans la méthode test, car c'est l'action qu'on souhaite tester.
 
 > Q.1f Testez l’opération horizontalSymmetry. Là encore, plusieurs tests (i.e. plusieurs opérations) seront nécessaires. Vous remarquerez que cette opération peut lever une exception. Utilisez le paramètre expected de l’annotation Test pour vérifier que cette exception est bien levée en temps voulu.
+
 
 ## Couverture de code
 

@@ -13,10 +13,12 @@ public class TestMyPoint {
 	MyPoint pointForOperations;
 	MyPoint fromOtherPoint;
 	MyPoint fromScale;
+	MyPoint toScale;
 	
 	@Before
 	public void setUp() throws Exception {
 		pointForOperations = new MyPoint();
+		toScale = new MyPoint();
 	}
 	
 	
@@ -88,17 +90,53 @@ public class TestMyPoint {
 	}
 
 	/**
-	 * Tests scale functionality with random double
+	 * Tests scale functionality with default constructor
 	 */
+	@Test
 	public void testscale() {
 		Random rand = new Random();
 		double  sx = rand.nextDouble();
-		fromScale = new MyPoint();
-		fromScale.scale(sx);
+		fromScale = toScale.scale(sx);
+		assert(fromScale.getX() == 0.0 && fromScale.getY() == 0.0);
+	}
+
+	/**
+	 * Tests scale functionality with pointer = null
+	 */
+	@Test
+	public void testscale2() {
+		Random rand = new Random();
+		double  sx = rand.nextDouble();
+		toScale = null;
+		fromScale = toScale.scale(sx);
 		assert(fromScale.getX() == 0.0 && fromScale.getY() == 0.0);
 	}
 	
 	
-	
+	/**
+	 * Tests scale functionality with constructor 2
+	 */
+	@Test
+	public void testscale3() {
+		Random rand = new Random();
+		double  sx = rand.nextDouble();
+		double  x = rand.nextDouble();
+		double  y = rand.nextDouble();
+		toScale.setX(x);
+		toScale.setY(y);
+		fromScale = toScale.scale(sx);
+		assertEquals (x*sx, fromScale.getX(), 0.0001);
+		assertEquals (y*sx, fromScale.getY(), 0.0001);
+	}	
+	/**
+	 * tests horizontally 
+	 * @param origin The location of the horizontal axe.
+	 * @return the computed point.
+	 * @throws IllegalArgumentException When the given parameter is null.
+	 */
+	@Test
+	public void testhorizontally() {
+		
+	}	
 
 }
