@@ -41,7 +41,7 @@ public class MyPoint {
 	 * @param pt The IMyPoint, if null the default value (0,0) will be used.
 	 */
 	public MyPoint(final MyPoint pt) {
-		this(pt.x, pt.y);
+			this(pt!=null?pt.x:0.0, pt!=null?pt.y:0.0);
 	}
 
 

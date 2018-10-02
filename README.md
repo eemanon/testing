@@ -21,9 +21,10 @@ comprendre le comportement attendu des constructeurs. Utilisez des assertions po
 
 > Q.1c Testez les accesseurs en lecture et écriture (les opérations get et set). Tout d’abord, testez getX et setX ensemble (car elles sont liées, idem pour y). Ensuite créez d’autres tests pour tester les opérations set avec la valeur Double.NaN (cf. la javadoc de ces opérations).
 - Le test pour tester setY echoue, car l'implementation de la méthode ne correspond pas à sa description (x ou lieu de y.
-- Le test pour tester si la valeur associée dans la méthode set n'est pas NAN echouche également, car il n'y a pas de test si la valeur est NAN (contrairement à la javadoc)
+- Le test pour tester si la valeur associée dans la méthode set n'est pas NAN echouche également, car il n'y a pas de test si la valeur est NAN (contrairement à la javadoc) (vrai pour les deux setters, x et y).
 
 > Q.1d Testez le constructeur 3 et l’opération scale. Plusieurs tests (i.e. plusieurs opérations) seront nécessaires pour le constructeur 3. Vous pouvez constater que la plupart des tests nécessitent la création d’un point au début des opérations de test.
+- Le constructeur 3 ne vérifie pas si le point passé en argument est non null. Le test echoue donc.
 
 > Q.1e Définissez et utilisez l’opération @Before setUp() et tout ce qui est également nécessaire pour déléguer cette création à l’opération setUp.
 

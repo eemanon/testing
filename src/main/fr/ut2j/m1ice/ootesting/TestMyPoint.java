@@ -11,6 +11,8 @@ public class TestMyPoint {
 	MyPoint simplePoint;
 	MyPoint customPoint;
 	MyPoint pointForOperations;
+	MyPoint fromOtherPoint;
+	MyPoint fromScale;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -72,7 +74,29 @@ public class TestMyPoint {
 		assert (!Double.isNaN(pointForOperations.getX()));
 	}
 	
-	
+	/**
+	 * Test Constructor 3
+	 * Creates a point from a IMyPoint.
+	 * (0,0) will be used when the given pt is null.
+	 * @param pt The IMyPoint, if null the default value (0,0) will be used.
+	 */
+	@Test
+	public void testMyPoint3() {
+		fromOtherPoint = new MyPoint(simplePoint);
+		assert(fromOtherPoint.getX()==0.0 && fromOtherPoint.getY()==0.0);
+				
+	}
+
+	/**
+	 * Tests scale functionality with random double
+	 */
+	public void testscale() {
+		Random rand = new Random();
+		double  sx = rand.nextDouble();
+		fromScale = new MyPoint();
+		fromScale.scale(sx);
+		assert(fromScale.getX() == 0.0 && fromScale.getY() == 0.0);
+	}
 	
 	
 	
