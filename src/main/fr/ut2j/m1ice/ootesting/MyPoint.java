@@ -50,7 +50,9 @@ public class MyPoint {
 	 * @param newX The new X coordinate. Must be valid (not equal Double.NaN), otherwise nothing is done.
 	 */
 	public void setX(final double newX) {
-		x = newX;
+		if(!Double.isNaN(newX))
+			x = newX;
+		
 	}
 
 
@@ -59,7 +61,8 @@ public class MyPoint {
 	 * @param newY The new Y coordinate. Must be valid (not equal Double.NaN), otherwise nothing is done.
 	 */
 	public void setY(final double newY) {
-		x = newY;
+		if(!Double.isNaN(newY))
+			y = newY;
 	}
 
 

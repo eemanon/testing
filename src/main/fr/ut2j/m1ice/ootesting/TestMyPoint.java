@@ -10,11 +10,11 @@ public class TestMyPoint {
 
 	MyPoint simplePoint;
 	MyPoint customPoint;
-	MyPoint pointforOperationTests;
+	MyPoint pointForOperations;
 	
 	@Before
 	public void setUp() throws Exception {
-		pointforOperationTests = new MyPoint();
+		pointForOperations = new MyPoint();
 	}
 	
 	
@@ -48,8 +48,8 @@ public class TestMyPoint {
 	public void testsetX() {
 		Random rand = new Random();
 		double  x = rand.nextDouble();
-		pointforOperationTests.setX(x);
-		assertEquals (x, pointforOperationTests.getX(), 0.0001);		
+		pointForOperations.setX(x);
+		assertEquals (x, pointForOperations.getX(), 0.0001);		
 	}	
 	
 	/**
@@ -59,8 +59,22 @@ public class TestMyPoint {
 	public void testsetY() {
 		Random rand = new Random();
 		double  y = rand.nextDouble();
-		pointforOperationTests.setY(y);
-		assertEquals (y, pointforOperationTests.getY(), 0.0001);		
-	}	
+		pointForOperations.setY(y);
+		assertEquals (y, pointForOperations.getY(), 0.0001);		
+	}
+	/**
+	 * Test setX (with Double.NAN).
+	 */
+	@Test
+	public void testsetX2() {
+		double x = Double.NaN;
+		pointForOperations.setX(x);
+		assert (!Double.isNaN(pointForOperations.getX()));
+	}
+	
+	
+	
+	
+	
 
 }
