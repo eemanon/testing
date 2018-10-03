@@ -30,15 +30,18 @@ comprendre le comportement attendu des constructeurs. Utilisez des assertions po
 - OK. Pour les cas de test du genre de testmyPoint, on garde l'action de création de l'objet dans la méthode test, car c'est l'action qu'on souhaite tester.
 
 > Q.1f Testez l’opération horizontalSymmetry. Là encore, plusieurs tests (i.e. plusieurs opérations) seront nécessaires. Vous remarquerez que cette opération peut lever une exception. Utilisez le paramètre expected de l’annotation Test pour vérifier que cette exception est bien levée en temps voulu.
-
+- OK
 
 ## Couverture de code
 
 > Q.2a Utilisez l’outil de couverture de code fourni dans Eclipse (ou autre IDE) pour identifier les chemins dans le code non couvert par vos tests. Rajoutez quelques tests si besoins (n’y passez pas trop de temps).
+- OK (couverture de test: 89%)
 
 > Q.2b Est-ce que votre code est sûr lorsque toutes les instructions sont couvertes par au moins un test ?
+- Non. On ne peut jamais être sûr à 100% ( exemple: scale peut être appelé sur un MyPoint non-initalisé et même en ayant couvert la méthode par un test, le test n'a pas couvert toutes les possiblités d'éxecution).
 
-> Q.2c Ajoutez le test unitaire suivant et exécutez-le. S’il passe, bien joué. Dans tout les cas cela peut certainement vous aidez à répondre à la question précédente.
+> Q.2c Ajoutez le test unitaire suivant et exécutez-le. S’il passe, bien joué. Dans tous les cas cela peut certainement vous aidez à répondre à la question précédente.
+- Le test passe en ajoutant un (expected=IllegalArgumentException.class) derriere l'annotation.
 
     @Test public void testCentralSymmetryNULL ( ) {
         new MyPoint ( 1 0 , 2 0 ) . centralSymmetry ( null ) ;
@@ -52,16 +55,18 @@ L’opération setPoint(Random r1, Random r2) définit les coordonnées d’un point de
 
 > Q.3a Expliquez en quoi il est impossible de tester en l’état cette opération.
     >> On veut donc utiliser le principe du Mock pour tester cette opération.
+- Il est impossible prévoir le résultat de la méthode due au facteur aléatoire des coordonnées.
 
 > Q.3b Utilisez Easymock ou Mockito pour tester cette opération. 
 
 Avec Mockito :
 - N’oubliez pas @RunWith (MockitoJUnitRunner.class). Vous aurez besoin de 2 attributs Random annotée avec @Mock. Le but est de simuler l’opération nextInt(). 
 - L’opération translate(ITranslation) déplace le point selon le vecteur de translation donné en paramètre. Cependant ITranslation est une interface, on ne peut donc pas l’instancier.
-
+- OK
 Avec Easymock : voir la refcard et les slides du cours.
 
 > Q.3c Supposons que nous ne disposons pas d’une implémentation de ITranslation pour tester cette opération, utilisez Mockito ou Easymock et tester finalement cette opération.
+- Si l'interface ITranslation n'existait pas, on ne peut pas être sûr de disposer des méthodes getTx et getTy.
 
 ## Evaluation 
 

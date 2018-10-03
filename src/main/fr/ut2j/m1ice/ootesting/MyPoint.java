@@ -2,6 +2,8 @@ package main.fr.ut2j.m1ice.ootesting;
 
 import java.util.Random;
 
+import org.mockito.Mock;
+
 import static java.lang.Math.PI;
 import static java.lang.Math.atan;
 
@@ -100,7 +102,7 @@ public class MyPoint {
 	 */
 	public MyPoint horizontalSymmetry(final MyPoint origin) {
 		if(origin == null) throw new IllegalArgumentException();
-		return new MyPoint(2d * origin.getX() - x, y);
+		return new MyPoint(x,2d * origin.getY() - y);
 	}
 
 

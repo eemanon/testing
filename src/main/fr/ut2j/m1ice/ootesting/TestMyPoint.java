@@ -2,9 +2,13 @@ package main.fr.ut2j.m1ice.ootesting;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+
 import java.util.Random;
+import static org.mockito.Mockito.*;
 
 public class TestMyPoint {
 
@@ -15,10 +19,21 @@ public class TestMyPoint {
 	MyPoint fromScale;
 	MyPoint toScale;
 	
+	
+	@Mock
+	private ITranslation itrans;
+
+	
 	@Before
 	public void setUp() throws Exception {
 		pointForOperations = new MyPoint();
 		toScale = new MyPoint();
+	}
+	
+	@After
+	public void tearDown() {
+		pointForOperations = null;
+		toScale = null;
 	}
 	
 	
@@ -90,26 +105,15 @@ public class TestMyPoint {
 	}
 
 	/**
-	 * Tests scale functionality with default constructor
-	 */
-	@Test
-	public void testscale() {
-		Random rand = new Random();
-		double  sx = rand.nextDouble();
-		fromScale = toScale.scale(sx);
-		assert(fromScale.getX() == 0.0 && fromScale.getY() == 0.0);
-	}
-
-	/**
 	 * Tests scale functionality with pointer = null
 	 */
 	@Test
 	public void testscale2() {
 		Random rand = new Random();
 		double  sx = rand.nextDouble();
-		toScale = null;
 		fromScale = toScale.scale(sx);
-		assert(fromScale.getX() == 0.0 && fromScale.getY() == 0.0);
+		assertEquals(fromScale.getX(),0d,0.0001);
+		assertEquals(fromScale.getY(),0d,0.0001);
 	}
 	
 	
@@ -136,7 +140,77 @@ public class TestMyPoint {
 	 */
 	@Test
 	public void testhorizontally() {
-		
+		MyPoint zero = new MyPoint(3,3);
+		MyPoint result = zero.horizontalSymmetry(pointForOperations);
+		assertEquals (3d, result.getX(), 0.0001);
+		assertEquals (-3d, result.getY(), 0.0001);
+	}
+	
+	@Test
+	public void testhorizontally2() {
+		MyPoint zero = new MyPoint(3,3);
+		MyPoint autrePoint = new MyPoint(5,5);
+		MyPoint result = zero.horizontalSymmetry(autrePoint);
+		assertEquals (3d, result.getX(), 0.0001);
+		assertEquals (7d, result.getY(), 0.0001);
 	}	
-
+		
+	@Test(expected=IllegalArgumentException.class)
+	public void testhorizontallyException() {
+		MyPoint result = pointForOperations.horizontalSymmetry(simplePoint);	
+	}	
+	
+	
+    @Test(expected=IllegalArgumentException.class)
+    public void testCentralSymmetryNULL ( ) {
+        new MyPoint ( 10 , 20 ).centralSymmetry ( null ) ;
+    }
+    
+    @Test 
+    public void testsetPointRandom() {
+    	Random mockPoint = mock(Random.class);
+    	when(mockPoint.nextInt()).thenReturn(3);
+    	Random mockPoint2 = mock(Random.class);
+    	when(mockPoint2.nextInt()).thenReturn(5);
+    	MyPoint nonRandom= new MyPoint();
+    	nonRandom.setPoint(mockPoint,mockPoint2);
+    	assertEquals(3d,nonRandom.getX(), 0.0001);
+    	assertEquals(5d,nonRandom.getY(), 0.0001);
+    }
+    
+    @Test
+    public void testITranslation() {
+    	MyPoint p = new MyPoint();
+    	itrans = mock(ITranslation.class);
+    	when(itrans.getTx()).thenReturn(2);
+    	when(itrans.getTy()).thenReturn(4);
+    	p.translate(itrans);
+    	assertEquals(2d,p.getX(), 0.0001);
+    	assertEquals(4d,p.getY(), 0.0001); 	
+    }
+    
+    @Test
+    public void testgetMiddlePoint() {
+    	pointForOperations = pointForOperations.getMiddlePoint(new MyPoint(2.0, 2.0));
+    	assertEquals(1d,pointForOperations.getX(), 0.0001);
+    	assertEquals(1,pointForOperations.getY(), 0.0001);
+    }
+    
+    @Test
+    public void testrotatePoint() {
+    	MyPoint p = new MyPoint(3,3);
+    	p = p.rotatePoint(pointForOperations, 5.3);
+    	assertEquals(4.159925335209186,p.getX(), 0.0001);
+    	assertEquals(-0.8336793181342212,p.getY(), 0.0001); 	
+    	
+    }    
+    @Test
+    public void testcomputeAngle() {
+    	MyPoint p = new MyPoint(3,3);
+    	double res = p.computeAngle(pointForOperations);
+    	System.out.println(res);
+    	assertEquals(3.9269908169872414,res, 0.0001);	
+    	
+    }    
+    
 }
