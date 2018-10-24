@@ -1,76 +1,78 @@
 # Object-Oriented Software Testing
 
+Binome: Sebastian Simon & Solen Pensel
+
 Master 1 ICE, GLa - V&V - Labs ([course materials](http://combemale.fr/teaching/m1ice/))
 
-> CrÈez un projet Java, rÈcupÈrez la classe MyPoint, et rajoutez la librairie JUnit ‡ votre projet. 
+> Cr√©ez un projet Java, r√©cup√©rez la classe MyPoint, et rajoutez la librairie JUnit √† votre projet. 
 
 - OK
 
 ## Test Unitaire pour Java avec JUnit
 
 > Q.1a Tester les constructeurs 1 et 2 (dans une classe de test TestMyPoint). Pour cela, utiliser la Javadoc pour
-comprendre le comportement attendu des constructeurs. Utilisez des assertions pour vÈrifier les valeurs, par exemple :
+comprendre le comportement attendu des constructeurs. Utilisez des assertions pour v√©rifier les valeurs, par exemple :
 
     ...
     assertEquals (0d, point . getX (), 0.0001);
     ...
 - OK
 
-> Q.1b Le test de ces constructeurs utilisent les opÈrations getX et getY. Ne trouvez-vous pas cela Ètrange quíun test utilise díautres opÈrations ? Que faire ?
+> Q.1b Le test de ces constructeurs utilisent les op√©rations getX et getY. Ne trouvez-vous pas cela √©trange qu‚Äôun test utilise d‚Äôautres op√©rations ? Que faire ?
 - Non, puisque les attributs qui nous interessent sont private, il nous faut des getter et setter pour y acceder.
 
-> Q.1c Testez les accesseurs en lecture et Ècriture (les opÈrations get et set). Tout díabord, testez getX et setX ensemble (car elles sont liÈes, idem pour y). Ensuite crÈez díautres tests pour tester les opÈrations set avec la valeur Double.NaN (cf. la javadoc de ces opÈrations).
-- Le test pour tester setY echoue, car l'implementation de la mÈthode ne correspond pas ‡ sa description (x ou lieu de y.
-- Le test pour tester si la valeur associÈe dans la mÈthode set n'est pas NAN echouche Ègalement, car il n'y a pas de test si la valeur est NAN (contrairement ‡ la javadoc) (vrai pour les deux setters, x et y).
+> Q.1c Testez les accesseurs en lecture et √©criture (les op√©rations get et set). Tout d‚Äôabord, testez getX et setX ensemble (car elles sont li√©es, idem pour y). Ensuite cr√©ez d‚Äôautres tests pour tester les op√©rations set avec la valeur Double.NaN (cf. la javadoc de ces op√©rations).
+- Le test pour tester setY echoue, car l'implementation de la m√©thode ne correspond pas √† sa description (x ou lieu de y.
+- Le test pour tester si la valeur associ√©e dans la m√©thode set n'est pas NAN echouche √©galement, car il n'y a pas de test si la valeur est NAN (contrairement √† la javadoc) (vrai pour les deux setters, x et y).
 
-> Q.1d Testez le constructeur 3 et líopÈration scale. Plusieurs tests (i.e. plusieurs opÈrations) seront nÈcessaires pour le constructeur 3. Vous pouvez constater que la plupart des tests nÈcessitent la crÈation díun point au dÈbut des opÈrations de test.
-- Le constructeur 3 ne vÈrifie pas si le point passÈ en argument est non null. Le test echoue donc.
+> Q.1d Testez le constructeur 3 et l‚Äôop√©ration scale. Plusieurs tests (i.e. plusieurs op√©rations) seront n√©cessaires pour le constructeur 3. Vous pouvez constater que la plupart des tests n√©cessitent la cr√©ation d‚Äôun point au d√©but des op√©rations de test.
+- Le constructeur 3 ne v√©rifie pas si le point pass√© en argument est non null. Le test echoue donc.
 
-> Q.1e DÈfinissez et utilisez líopÈration @Before setUp() et tout ce qui est Ègalement nÈcessaire pour dÈlÈguer cette crÈation ‡ líopÈration setUp.
-- OK. Pour les cas de test du genre de testmyPoint, on garde l'action de crÈation de l'objet dans la mÈthode test, car c'est l'action qu'on souhaite tester.
+> Q.1e D√©finissez et utilisez l‚Äôop√©ration @Before setUp() et tout ce qui est √©galement n√©cessaire pour d√©l√©guer cette cr√©ation √† l‚Äôop√©ration setUp.
+- OK. Pour les cas de test du genre de testmyPoint, on garde l'action de cr√©ation de l'objet dans la m√©thode test, car c'est l'action qu'on souhaite tester.
 
-> Q.1f Testez líopÈration horizontalSymmetry. L‡ encore, plusieurs tests (i.e. plusieurs opÈrations) seront nÈcessaires. Vous remarquerez que cette opÈration peut lever une exception. Utilisez le paramËtre expected de líannotation Test pour vÈrifier que cette exception est bien levÈe en temps voulu.
+> Q.1f Testez l‚Äôop√©ration horizontalSymmetry. L√† encore, plusieurs tests (i.e. plusieurs op√©rations) seront n√©cessaires. Vous remarquerez que cette op√©ration peut lever une exception. Utilisez le param√®tre expected de l‚Äôannotation Test pour v√©rifier que cette exception est bien lev√©e en temps voulu.
 - OK
 
 ## Couverture de code
 
-> Q.2a Utilisez líoutil de couverture de code fourni dans Eclipse (ou autre IDE) pour identifier les chemins dans le code non couvert par vos tests. Rajoutez quelques tests si besoins (níy passez pas trop de temps).
+> Q.2a Utilisez l‚Äôoutil de couverture de code fourni dans Eclipse (ou autre IDE) pour identifier les chemins dans le code non couvert par vos tests. Rajoutez quelques tests si besoins (n‚Äôy passez pas trop de temps).
 - OK (couverture de test: 89%)
 
-> Q.2b Est-ce que votre code est s˚r lorsque toutes les instructions sont couvertes par au moins un test ?
-- Non. On ne peut jamais Ítre s˚r ‡ 100% ( exemple: scale peut Ítre appelÈ sur un MyPoint non-initalisÈ et mÍme en ayant couvert la mÈthode par un test, le test n'a pas couvert toutes les possiblitÈs d'Èxecution).
+> Q.2b Est-ce que votre code est s√ªr lorsque toutes les instructions sont couvertes par au moins un test ?
+- Non. On ne peut jamais √™tre s√ªr √† 100% ( exemple: scale peut √™tre appel√© sur un MyPoint non-initalis√© et m√™me en ayant couvert la m√©thode par un test, le test n'a pas couvert toutes les possiblit√©s d'√©xecution).
 
-> Q.2c Ajoutez le test unitaire suivant et exÈcutez-le. Síil passe, bien jouÈ. Dans tous les cas cela peut certainement vous aidez ‡ rÈpondre ‡ la question prÈcÈdente.
+> Q.2c Ajoutez le test unitaire suivant et ex√©cutez-le. S‚Äôil passe, bien jou√©. Dans tous les cas cela peut certainement vous aidez √† r√©pondre √† la question pr√©c√©dente.
 - Le test passe en ajoutant un (expected=IllegalArgumentException.class) derriere l'annotation.
 
     @Test public void testCentralSymmetryNULL ( ) {
         new MyPoint ( 1 0 , 2 0 ) . centralSymmetry ( null ) ;
     }
 
-## Test d'intÈgration pour Java avec EasyMock ou Mockito
+## Test d'int√©gration pour Java avec EasyMock ou Mockito
 
-Cet exercice est une brËve introduction au principe du mock.
+Cet exercice est une br√®ve introduction au principe du mock.
 
-LíopÈration setPoint(Random r1, Random r2) dÈfinit les coordonnÈes díun point de maniËre alÈatoire (x avec r1, et y avec r2).
+L‚Äôop√©ration setPoint(Random r1, Random r2) d√©finit les coordonn√©es d‚Äôun point de mani√®re al√©atoire (x avec r1, et y avec r2).
 
-> Q.3a Expliquez en quoi il est impossible de tester en líÈtat cette opÈration.
-    >> On veut donc utiliser le principe du Mock pour tester cette opÈration.
-- Il est impossible prÈvoir le rÈsultat de la mÈthode due au facteur alÈatoire des coordonnÈes.
+> Q.3a Expliquez en quoi il est impossible de tester en l‚Äô√©tat cette op√©ration.
+    >> On veut donc utiliser le principe du Mock pour tester cette op√©ration.
+- Il est impossible pr√©voir le r√©sultat de la m√©thode due au facteur al√©atoire des coordonn√©es.
 
-> Q.3b Utilisez Easymock ou Mockito pour tester cette opÈration. 
+> Q.3b Utilisez Easymock ou Mockito pour tester cette op√©ration. 
 
 Avec Mockito :
-- Níoubliez pas @RunWith (MockitoJUnitRunner.class). Vous aurez besoin de 2 attributs Random annotÈe avec @Mock. Le but est de simuler líopÈration nextInt(). 
-- LíopÈration translate(ITranslation) dÈplace le point selon le vecteur de translation donnÈ en paramËtre. Cependant ITranslation est une interface, on ne peut donc pas líinstancier.
+- N‚Äôoubliez pas @RunWith (MockitoJUnitRunner.class). Vous aurez besoin de 2 attributs Random annot√©e avec @Mock. Le but est de simuler l‚Äôop√©ration nextInt(). 
+- L‚Äôop√©ration translate(ITranslation) d√©place le point selon le vecteur de translation donn√© en param√®tre. Cependant ITranslation est une interface, on ne peut donc pas l‚Äôinstancier.
 - OK
 Avec Easymock : voir la refcard et les slides du cours.
 
-> Q.3c Supposons que nous ne disposons pas díune implÈmentation de ITranslation pour tester cette opÈration, utilisez Mockito ou Easymock et tester finalement cette opÈration.
-- Si l'interface ITranslation n'existait pas, on ne peut pas Ítre s˚r de disposer des mÈthodes getTx et getTy.
+> Q.3c Supposons que nous ne disposons pas d‚Äôune impl√©mentation de ITranslation pour tester cette op√©ration, utilisez Mockito ou Easymock et tester finalement cette op√©ration.
+- Si l'interface ITranslation n'existait pas, on ne peut pas √™tre s√ªr de disposer des m√©thodes getTx et getTy.
 
 ## Evaluation 
 
 1. faite un fork du repo github
-2. rÈpondez aux questions (dans un nouveau fichier Markdown ou directement dans README.md), dans lequel vous prÈciserez Ègalement les noms du binome.
+2. r√©pondez aux questions (dans un nouveau fichier Markdown ou directement dans README.md), dans lequel vous pr√©ciserez √©galement les noms du binome.
 3. rajoutez vos tests, modifications de la classe sous test, etc. 
-4. soumettez votre pull request (qui servira ‡ l'Èvaluation)
+4. soumettez votre pull request (qui servira √† l'√©valuation)
